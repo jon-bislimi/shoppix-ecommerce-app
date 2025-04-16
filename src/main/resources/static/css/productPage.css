@@ -1,0 +1,86 @@
+/* Siguro që kjo të ndikojë vetëm në faqen e produktit */
+#containerDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 30px;
+
+}
+
+/* Karta e produktit (pak më e madhe) */
+.product-card {
+    display: flex;
+    flex-direction: row-reverse; /* Vendos imazhin në të djathtë */
+    align-items: center;
+    background: #A7C7E7;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 900px; /* E rris pak kartën */
+    width: 100%;
+    gap: 30px; /* Hapësirë më e madhe mes imazhit dhe tekstit */
+    margin-top: -300px;
+}
+
+/* Imazhi brenda kartës */
+.product-card img {
+    max-width: 350px; /* E bëj imazhin pak më të madh */
+    border-radius: 10px;
+}
+
+/* Detajet e produktit */
+.product-details {
+    flex: 1;
+    text-align: left;
+}
+
+.product-details h2 {
+    font-size: 28px; /* Titulli më i madh */
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.product-details p {
+    font-size: 18px; /* Tekst pak më i madh për lexim më të lehtë */
+    color: #555;
+    margin-bottom: 15px; /* Hapësirë më e madhe mes paragrafeve */
+}
+
+/* Butoni */
+.product-details .btn {
+    display: inline-block;
+    padding: 12px 16px; /* E bëj butonin më të madh */
+    font-size: 18px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.product-details .btn:hover {
+    background-color: #0056b3;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+#adminBtns {
+    display: flex;
+    justify-content: center; /* Qendron butonat në mes horizontalisht */
+    gap: 10px; /* Hapësirë mes butonave */
+    position: relative;
+    top: -405px; /* Ngjit më lart */
+}
+
+#containerDiv {
+    margin-bottom: 10px; /* Hapësirë e vogël mes container-it dhe butonave */
+}
+
+
+

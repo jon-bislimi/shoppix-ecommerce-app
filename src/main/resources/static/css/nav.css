@@ -1,0 +1,148 @@
+.navbar {
+    position: fixed;
+    top: 0;  /* Mbajmë navbar-in në krye të ekranit */
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* Siguron që navbar të jetë mbi përmbajtjen tjetër */
+    background-color: #ffffff; /* Mund të përshtatni ngjyrën e navbar-it këtu */
+}
+
+/* Jepi hapësirë për navbar në përmbajtjen e trupit */
+body {
+    padding-top: 56px; /* Përshtat lartësinë që ka navbar-i për të lënë hapësirë */
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+/* Pjesa 'ix' e logo */
+.navbar-brand span {
+    color: #28a745;
+    font-size: 1.25em;/* Ngjyrë e gjelbër për 'ix' */
+}
+
+/* Stilizimi i butonit Search me ngjyrë të gjelbër */
+.btn-outline-success {
+    color: #28a745; /* Gjelbër Bootstrap */
+    border-color: #28a745;
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Formulari i kërkimit për t'u bërë më bukur */
+.form-control {
+    border-radius: 30px; /* Bërë më të rrumbullakosur */
+    padding-left: 20px;
+    width: 280px/* Hapësirë për të lejuar që tekstet të duken më të qarta */
+}
+
+.navbar-brand {
+    margin-left: auto;
+}
+
+/* Butoni i kërkimit si rreth perfekt */
+.btn-outline-success {
+    width: 40px;  /* Gjerësia e butonit */
+    height: 40px; /* Lartësia e butonit */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Heqim çdo hapësirë të brendshme për të pasur një formë të saktë të rrethit */
+    border-radius: 100%; /* Kthehet në formën e një rrethi të përsosur */
+    border: 1px solid #28a745; /* Kufiri i gjelbër */
+    background-color: transparent; /* Background transparent */
+}
+
+/* Ikona e kërkimit */
+.btn-outline-success i {
+    font-size: 20px; /* Madhësia e ikonës */
+    color: #28a745; /* Ngjyra e ikonës (e gjelbër) */
+}
+
+/* Ngjyra kur butoni është hover */
+.btn-outline-success:hover {
+    border-radius: 100%;
+    background-color: #28a745; /* Ngjyra e gjelbër kur është hover */
+    border-color: #28a745; /* Kufiri gjithashtu bëhet i gjelbër */
+}
+
+/* Ikona kur është hover (ngjyra e ikonës bëhet e bardhë kur është hover) */
+.btn-outline-success:hover i {
+    color: white;
+}
+
+.i {
+    margin-left: 31%;
+}
+
+/* Krijo animacionin e vijës */
+.custom-hover a {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px; /* Shtoni hapësirë poshtë për vijën */
+}
+
+.custom-hover a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #28a745; /* Ngjyra e vijës */
+    transition: width 0.4s ease-in-out;
+}
+
+.custom-hover a:hover::after {
+    width: 100%; /* Kur kalon mausi, vija zgjerohet deri në fund */
+}
+
+.custom-hover a:focus::after {
+    width: 100%; /* Kur klikohet, vija mbetet e plotë */
+}
+
+/* Stilizimi i Asid Bar */
+.aside-bar {
+    position: fixed;
+    top: 56px;  /* Shtuar hapësirë poshtë navbar-it (default height e navbar-it të Bootstrap) */
+    left: 0;
+    width: 250px;
+    height: calc(100% - 56px); /* Përdorim calc për të lënë hapësirë për navbar-in */
+    background-color: #f8f9fa;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* Lidhjet dhe butonat në aside bar */
+.aside-bar .nav-item {
+    margin-bottom: 20px;
+}
+
+.aside-bar .nav-link {
+    font-size: 18px;
+    color: #495057;
+    font-weight: 500;
+}
+
+.aside-bar .nav-link:hover {
+    color: #28a745;
+    text-decoration: none;
+}
+
+.aside-bar .btn {
+    font-size: 16px;
+}
+
+/* Kur navigohen, lidhjet e navigacionit të kenë një ngjyrë */
+.aside-bar .nav-link.active {
+    color: #28a745;
+}
+
+body {
+    margin-left: 250px; /* Lënë hapësirë për aside bar */
+}

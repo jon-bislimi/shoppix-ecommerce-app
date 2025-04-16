@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="shared/layout :: layout('Edit Product',~{::#styles}, ~{::content}, ~{::#scripts})">
+<head>
+    <meta charset="UTF-8">
+    <div id="styles">
+        <link th:href="@{/css/createForm.css}" rel="stylesheet">
+    </div>
+</head>
+<body>
+<th:block th:fragment="content">
+
+    <form class="createForm" th:object="${product}" th:action="@{/product/edit/{id}(id=${product.id})}" method="post"
+          enctype="multipart/form-data">
+        <input type="hidden" name="_method" value="put" />
+
+        <!-- Display BindingResult errors -->
+        <div th:if="${#fields.hasErrors()}">
+            <ul>
+                <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+            </ul>
+        </div>
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" th:field="*{name}" th:attr="placeholder=${product.name}">
+
+        <label for="description">Description</label>
+        <input type="text" id="description" name="description" th:field="*{description}"
+               th:attr="placeholder=${product.description}">
+
+        <label for="price">Price</label>
+        <input type="number" id="price" name="price" th:field="*{price}" th:attr="placeholder=${product.price}">
+
+        <label for="stock">Stock</label>
+        <input type="number" id="stock" name="stock" th:field="*{stock}" th:attr="placeholder=${product.stock}">
+
+        <label for="brand">Brand</label>
+        <input type="text" id="brand" name="brand" th:field="*{brand}" th:attr="placeholder=${product.brand}">
+
+        <label for="categoryId">Category</label>
+        <select id="categoryId" name="categoryId" th:field="*{categoryId}">
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+        </select>
+
+        <label for="subcategoryId">Subcategory</label>
+        <select id="subcategoryId" name="subcategoryId" th:field="*{subcategoryId}">
+            <option th:each="subcategory : ${subcategories}" th:value="${subcategory.id}"
+                    th:text="${subcategory.name}"></option>
+        </select>
+
+        <label for="images">Images</label>
+        <input type="file" id="images" name="photoFile" multiple>
+
+        <button type="submit">Submit</button>
+    </form>
+</th:block>
+<div id="scripts">
+    <th:block>
+        <script th:src="@{/js/shared/baseApi.js}"></script>
+        <script th:src="@{/js/user/userApi.js}"></script>
+        <script th:src="@{/js/product/productApi.js}"></script>
+        <script th:src="@{/js/category/categoryApi.js}"></script>
+        <script th:src="@{/js/order/orderApi.js}"></script>
+        <script th:src="@{/js/shoppingCart/shoppingCartApi.js}"></script>
+        <script th:src="@{/js/wishlist/wishlistApi.js}"></script>
+        <script th:src="@{/js/product/app.js}"></script>
+        <script th:src="@{/js/layout.js}"></script>
+        <script th:src="@{/js/create.js}"></script>
+    </th:block>
+</div>
+</body>
+</html>

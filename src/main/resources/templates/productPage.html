@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="shared/layout :: layout('Product Details',~{::#styles}, ~{::content} , ~{::#scripts})">
+<head>
+    <meta charset="UTF-8">
+    <div id="styles">
+        <link th:href="@{/css/productPage.css}" rel="stylesheet">
+    </div>
+</head>
+<body>
+<th:block th:fragment="content">
+    <div class="container" id="containerDiv">
+
+    </div>
+
+    <th:block th:if="${session.user != null && session.user.roleDisplayName == 'Admin'} ">
+        <div id="adminBtns">
+            <button id="editProductBtn" class="btn btn-primary">Edit Product</button>
+            <button id="deleteProductBtn" class="btn btn-danger">Delete Product</button>
+        </div>
+    </th:block>
+
+    <th:block th:if="${productId != null || productId != ''} ">
+
+        <div id="productId" th:text="${productId}" style="display: none"></div>
+    </th:block>
+</th:block>
+<th:block th:fragment="scripts" id="scripts">
+</th:block>
+<div id="scripts">
+    <th:block>
+        <script th:src="@{/js/shared/baseApi.js}"></script>
+        <script th:src="@{/js/user/userApi.js}"></script>
+        <script th:src="@{/js/product/productApi.js}"></script>
+        <script th:src="@{/js/category/categoryApi.js}"></script>
+        <script th:src="@{/js/order/orderApi.js}"></script>
+        <script th:src="@{/js/shoppingCart/shoppingCartApi.js}"></script>
+        <script th:src="@{/js/wishlist/wishlistApi.js}"></script>
+        <script th:src="@{/js/product/app.js}"></script>
+        <script th:src="@{/js/layout.js}"></script>
+        <script th:src="@{/js/productPage.js}"></script>
+        <script th:src="@{/js/wishlist/wishlistApp.js}"></script>
+        <th:block th:if="${session.user != null}">
+            <script th:if="${session.user.roleDisplayName == 'Admin'}">
+                addEventListener('DOMContentLoaded', () => {
+                    const adminActions = new AdminActions();
+                    adminActions.init();
+                });
+            </script>
+        </th:block>
+    </th:block>
+</div>
+</body>

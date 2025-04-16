@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)), url(../img/bg-img.jpg);
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.form-box {
+    width: 90%;
+    max-width: 450px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #e8f5e9;
+    padding: 50px 60px 70px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.form-box h1 {
+    font-size: 30px;
+    margin-bottom: 60px;
+    color: #28a745;
+    position: relative;
+}
+
+.form-box h1::after {
+    content: '';
+    width: 30px;
+    height: 4px;
+    border-radius: 3px;
+    background: #28a745;
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.input-field {
+    background: #eaeaea;
+    margin: 15px 0;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    max-height: 65px;
+    transition: max-height 0.5s;
+    overflow: hidden;
+}
+
+.input-field.error {
+    border: 2px solid red; /* Red border on error */
+}
+
+input {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 18px 15px;
+}
+
+.input-field i {
+    margin-left: 15px;
+    color: #999;
+}
+
+form p {
+    text-align: left;
+    font-size: 13px;
+}
+
+form p a {
+    text-decoration: none;
+    color: #28a745;
+}
+
+.btn-field {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Butoni "Sign Up" dhe lidhja që të duket si buton */
+.btn-field a.btn {
+    display: flex; /* Përdorim flex për të centruar tekstin */
+    justify-content: center; /* Centron tekstin horizontalisht */
+    align-items: center; /* Centron tekstin vertikalisht */
+    padding: 12px 25px;  /* Rrisim padding për të shtuar madhësinë (rregulloje si dëshiron) */
+    background-color: #28a745;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 48%;
+    font-size: 14px; /* Madhësia e shkronjave të njëjtë si butoni tjetër */
+    margin-bottom: 10px; /* Lëreni hapësirë poshtë për butonin tjetër */
+    height: 45px;  /* Rrit lartësinë për ta bërë më të njëjtë me butonin tjetër */
+}
+
+
+.btn-field a.btn:hover {
+    background-color: #218838;
+}
+
+/* Butoni ekzistues */
+.btn-field button {
+    display: flex; /* Përdorim flex për të centruar tekstin */
+    justify-content: center; /* Centron tekstin horizontalisht */
+    align-items: center; /* Centron tekstin vertikalisht */
+    flex-basis: 48%;
+    padding: 12px 25px;  /* Madhësi më të njëjta me butonin tjetër */
+    background-color: #28a745;
+    color: #fff;
+    height: 45px; /* Siguron që butoni të ketë të njëjtën lartësi */
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px; /* Madhësia e shkronjave të njëjtë si butoni tjetër */
+}
+
+.btn-field button:hover {
+    background-color: #218838;
+}
+
+.input-group {
+    height: 280px;
+}
+
+.btn-field button.disable {
+    background: #eaeaea;
+    color: #555;
+}
+
+/* Stili për mesazhet e gabimit */
+.error-message {
+    color: red; /* Ngjyra e tekstit të gabimit është e kuqe */
+    font-size: 12px; /* Madhësia e shkronjave të gabimit (mund ta ndryshoni sipas nevojës) */
+    margin-top: 5px; /* Distanca nga inputi */
+}

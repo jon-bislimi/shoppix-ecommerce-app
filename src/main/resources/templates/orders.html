@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="shared/layout :: layout('Orders',~{::#styles}, ~{::content} , ~{::#scripts})">
+<head>
+    <meta charset="UTF-8">
+    <div id="styles">
+        <link rel="stylesheet" th:href="@{/css/orders.css}">
+    </div>
+</head>
+<body>
+<th:block th:fragment="content">
+    <div class="container" id="container">
+        <h2>MY ORDERS:</h2>
+        <ul class="responsive-table">
+            <li class="table-header">
+                <div class="col col-1">Order ID</div>
+                <div class="col col-2">Order Status</div>
+                <div class="col col-3">Order Items</div>
+                <div class="col col-4">Total Price</div>
+            </li>
+            <div id="orders"></div>
+
+
+
+
+
+
+<!--            <li class="table-row">-->
+<!--                <div class="col col-1" data-label="Order ID"></div>-->
+<!--                <div class="col col-2" data-label="Order Status"></div>-->
+<!--                <div class="col col-3" data-label="Order Items"></div>-->
+<!--                <div class="col col-4" data-label="Total Price"></div>-->
+<!--            </li>-->
+<!--            <li class="table-row">-->
+<!--                <div class="col col-1" data-label="Job Id">42442</div>-->
+<!--                <div class="col col-2" data-label="Customer Name">Jennifer Smith</div>-->
+<!--                <div class="col col-3" data-label="Amount">$220</div>-->
+<!--                <div class="col col-4" data-label="Payment Status">Pending</div>-->
+<!--            </li>-->
+<!--            <li class="table-row">-->
+<!--                <div class="col col-1" data-label="Job Id">42257</div>-->
+<!--                <div class="col col-2" data-label="Customer Name">John Smith</div>-->
+<!--                <div class="col col-3" data-label="Amount">$341</div>-->
+<!--                <div class="col col-4" data-label="Payment Status">Pending</div>-->
+<!--            </li>-->
+<!--            <li class="table-row">-->
+<!--                <div class="col col-1" data-label="Job Id">42311</div>-->
+<!--                <div class="col col-2" data-label="Customer Name">John Carpenter</div>-->
+<!--                <div class="col col-3" data-label="Amount">$115</div>-->
+<!--                <div class="col col-4" data-label="Payment Status">Pending</div>-->
+<!--            </li>-->
+        </ul>
+    </div>
+</th:block>
+
+<div id="scripts">
+    <th:block>
+        <script th:src="@{/js/shared/baseApi.js}"></script>
+        <script th:src="@{/js/user/userApi.js}"></script>
+        <script th:src="@{/js/product/productApi.js}"></script>
+        <script th:src="@{/js/wishlist/wishlistApi.js}"></script>
+        <script th:src="@{/js/shoppingCart/shoppingCartApi.js}"></script>
+        <script th:src="@{/js/product/app.js}"></script>
+        <script th:src="@{/js/category/categoryApi.js}"></script>
+        <script th:src="@{/js/order/orderApi.js}"></script>
+        <script th:src="@{/js/layout.js}"></script>
+        <script th:src="@{/js/orderItem/orderItemApi.js}"></script>
+        <script th:src="@{/js/order/orderApp.js}"></script>
+    </th:block>
+</div>
+</body>
+</html>

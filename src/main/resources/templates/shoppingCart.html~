@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="shared/layout :: layout('Shopping Cart',~{::#styles}, ~{::content} , ~{::#scripts})">
+<head>
+    <meta charset="UTF-8">
+    <div id="styles">
+    <link rel="stylesheet" th:href="@{/css/shoppingCart.css}">
+    </div>
+
+</head>
+<body>
+<th:block th:fragment="content">
+    <div class="container" id="shoppingCartDiv">
+<!--        <div class="cart-item">-->
+<!--            <img src="product-image.jpg" alt="Product Image" class="product-image">-->
+<!--            <div class="product-details">-->
+<!--                <h3 class="product-title">Luka Beige - 39</h3>-->
+<!--                <p class="product-category">SheShoes</p>-->
+<!--                <p class="product-price">9,9 €</p>-->
+<!--            </div>-->
+<!--            <div class="quantity-control">-->
+<!--                <button class="quantity-btn">-</button>-->
+<!--                <span class="quantity">1</span>-->
+<!--                <button class="quantity-btn">+</button>-->
+<!--            </div>-->
+<!--            <button class="delete-btn">🗑</button>-->
+<!--        </div>-->
+    </div>
+
+        <div id="checkout-container">
+            <h2 class="checkout-title">Checkout</h2>
+
+            <div class="checkout-summary">
+                <p>Total Items: <span th:text="${#lists.size(items)}" id="cartCount"></span></p> <!-- Display number of items -->
+                <h3>Total Price: <span id="totalPrice" th:text="${cart.totalPrice} + ' €'"></span></h3> <!-- Display total price -->
+            </div>
+
+            <div class="checkout-buttons mb-2">
+                <button class="btn clear-cart">Clear Cart</button>
+                <button class="btn buy-cart" id = "buyCartBtn">Buy Cart</button>
+            </div>
+        </div>
+
+
+
+    <th:block th:if = "${items.isEmpty()}">
+            <h1 class="empty-cart">Your 🛒 is empty!</h1>
+    </th:block>
+    <i class="fas fa-shopping-cart"></i>
+
+    <th:block th:unless = "${items.isEmpty()}">
+        <div id="idList">
+            <p style="display: none" th:each= "item : ${items}" th:text="${item.productId}"></p>
+        </div>
+        <div id="quantities">
+            <p style = "display: none" th:each="item : ${items}" th:text="${item.quantity}"></p>
+        </div>
+    </th:block>
+
+    <th:block th:unless = "${items == null}">
+        <div class="container">
+        </div>
+    </th:block>
+</th:block>
+
+
+
+
+
+<!--    <th:block th:if = "${items != null}">-->
+<!--        <div class="container" id="shoppingCartDiv">-->
+<!--            <div class="cart-item" th:each="item : ${items}">-->
+<!--                <img th:src="@{${item.product.imageUrl}}" alt="Product Image" class="product-image">-->
+<!--                <div class="product-details">-->
+<!--                    <h3 class="product-title" th:text="${item.product.name}"></h3>-->
+<!--                    <p class="product-category" th:text="${item.product.category.name}"></p>-->
+<!--                    <p class="product-price" th:text="${item.product.price} + ' $'"></p>-->
+<!--                </div>-->
+<!--                <div class="quantity-control">-->
+<!--                    <button class="quantity-btn">-</button>-->
+<!--                    <span class="quantity" th:text="${item.quantity}"></span>-->
+<!--                    <button class="quantity-btn">+</button>-->
+<!--                </div>-->
+<!--                <button class="delete-btn">🗑</button>-->
+<!--            </div>-->
+<!--        </div>-->
+
+</th:block>
+<th:block th:fragment="scripts" id="scripts">
+</th:block>
+<div id="scripts">
+    <th:block>
+        <script th:src="@{/js/shared/baseApi.js}"></script>
+        <script th:src="@{/js/user/userApi.js}"></script>
+        <script th:src="@{/js/product/productApi.js}"></script>
+        <script th:src="@{/js/category/categoryApi.js}"></script>
+        <script th:src="@{/js/order/orderApi.js}"></script>
+        <script th:src="@{/js/shoppingCart/shoppingCartApi.js}"></script>
+        <script th:src="@{/js/wishlist/wishlistApi.js}"></script>
+        <script th:src="@{/js/product/app.js}"></script>
+        <script th:src="@{/js/layout.js}"></script>
+        <script th:src="@{/js/shoppingCart/shoppingCartApp.js}"></script>
+    </th:block>
+</div>
+</body>

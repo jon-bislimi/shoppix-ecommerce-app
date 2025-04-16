@@ -1,0 +1,24 @@
+console.log("js is running")
+class HomeApp {
+    constructor() {
+        this.productApp = new ProductApp();
+        this.loaderDiv = document.getElementById("homeLoader");
+        this.init();
+    }
+
+    async init() {
+        console.log("HomeApp initialized");
+        this.loaderDiv.style.display = 'block';
+        try {
+            console.log("Initializing ProductApp");
+            await this.productApp.init();
+        } catch (error) {
+            console.error("Error loading products:", error);
+        } finally {
+            this.loaderDiv.style.display = 'none'; // Ensure loader is hidden
+        }
+    }
+}
+
+let homeApp = new HomeApp();
+

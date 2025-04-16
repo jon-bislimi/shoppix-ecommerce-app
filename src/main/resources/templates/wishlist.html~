@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="shared/layout :: layout('E-Commerce',~{::#styles}, ~{::content} , ~{::#scripts})">
+<head>
+    <meta charset="UTF-8">
+    <title>E-Commerce</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <div id="styles">
+        <link rel="stylesheet" th:href="@{/css/wishlist.css}">
+    </div>
+</head>
+<body>
+<th:block th:fragment="content">
+
+    <div class="htitle">
+    <h1>My Wishlist</h1>
+    </div>
+
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <div class="row g-0">
+                        <div class="col-md-6 d-flex align-items-center">
+                            <img src="/img/products/2a1ade3b-3ca5-4238-a35d-7ca16c48d3be_pexels-madebymath-90946.jpg" class="product-image img-fluid" alt="Product Image">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">Product 1</h5>
+                                <p class="card-text text-muted">Some description for this product</p>
+                                <p class="card-text"><strong>Price: $10</strong></p>
+                                <button class="btn btn-primary btn-custom mb-2">Add to Cart</button>
+                                <button class="btn btn-danger btn-custom">Remove from Wishlist</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</th:block>
+
+<div id="scripts">
+    <th:block>
+        <script th:src="@{/js/shared/baseApi.js}"></script>
+        <script th:src="@{/js/user/userApi.js}"></script>
+        <script th:src="@{/js/product/productApi.js}"></script>
+        <script th:src="@{/js/category/categoryApi.js}"></script>
+        <script th:src="@{/js/order/orderApi.js}"></script>
+        <script th:src="@{/js/shoppingCart/shoppingCartApi.js}"></script>
+        <script th:src="@{/js/wishlist/wishlistApi.js}"></script>
+        <script th:src="@{/js/product/app.js}"></script>
+        <script th:src="@{/js/wishlist/wishlistApp.js}"></script>
+        <script th:src="@{/js/layout.js}"></script>
+        <script>
+            addEventListener('DOMContentLoaded', async () => {
+                const wishlistApp = new WishlistApp();
+                await wishlistApp.initialize();
+            });
+        </script>
+    </th:block>
+</div>
+
+</body>
+</html>

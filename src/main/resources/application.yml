@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: ecom-main
+  datasource:
+    url: jdbc:postgresql://db:5432/ecomdb
+    username: yllbaba
+    password: secret
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+  web:
+    resources:
+      static-locations: classpath:/static/,file:./
+server:
+  servlet:
+    session:
+      timeout: 180m
+spring.mvc:
+  hiddenmethod:
+    filter:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+  info:
+    env:
+      enabled: true
+
+endpoints:
+  shutdown:
+    enabled: true
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eurekaserver:8070/eureka
+info:
+  app:
+    name: "ecom"
+    description: "Ecom main app"
+    version: "1"

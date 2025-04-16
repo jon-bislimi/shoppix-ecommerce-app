@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="shared/layout :: layout('Create',~{::#styles}, ~{::content} , ~{::#scripts})">
+<head>
+    <meta charset="UTF-8">
+    <div id="styles">
+    <link rel="stylesheet" th:href="@{/css/createForm.css}">
+    </div>
+</head>
+<body>
+
+<th:block th:fragment="content">
+    <th:block th:if="${product != null}">
+        <form class="createForm" th:object="${product}" th:action="@{/create/product}" method="post" enctype="multipart/form-data">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" th:field="*{name}" placeholder="Name">
+
+            <label for="description">Description</label>
+            <input type="text" id="description" name="description" th:field="*{description}" placeholder="Description">
+
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" th:field="*{price}" placeholder="Price">
+
+            <label for="stock">Stock</label>
+            <input type="number" id="stock" name="stock" th:field="*{stock}" placeholder="Stock">
+
+            <label for="brand">Brand</label>
+            <input type="text" id="brand" name="brand" th:field="*{brand}" placeholder="Brand">
+
+            <label for="categoryId">Category</label>
+            <select id="categoryId" name="categoryId" th:field="*{categoryId}">
+                <th:each th:each="category : ${categories}">
+                    <option th:value="${category.id}" th:text="${category.name}"></option>
+                </th:each>
+            </select>
+
+            <label for="subcategoryId">Subcategory</label>
+            <select id="subcategoryId" name="subcategoryId" th:field="*{subcategoryId}">
+                <th:each th:each="subcategory : ${subcategories}">
+                    <option th:value="${subcategory.id}" th:text="${subcategory.name}"></option>
+                </th:each>
+            </select>
+
+            <label for="images">Images</label>
+            <input type="file" id="images" name="photoFile" multiple>
+
+            <button type="submit">Submit</button>
+        </form>
+    </th:block>
+
+    <th:block th:if="${category != null}">
+        <form class="createForm" th:object="${category}" th:action="@{/create/category}" method="post" enctype="multipart/form-data">
+            <label for="name">Name</label>
+            <input type="text" name="name" th:field="*{name}" placeholder="Name">
+
+            <label for="description">Description</label>
+            <input type="text" name="description" th:field="*{description}" placeholder="Description">
+
+            <button type="submit">Submit</button>
+        </form>
+    </th:block>
+
+    <th:block th:if="${subcategory != null}">
+        <form class="createForm" th:object="${subcategory}" th:action="@{/create/subcategory}" method="post" enctype="multipart/form-data">
+            <label for="name">Name</label>
+            <input type="text" name="name" th:field="*{name}" placeholder="Name">
+
+            <label for="description">Description</label>
+            <input type="text" name="description" th:field="*{description}" placeholder="Description">
+
+            <label for="categoryId">Category</label>
+            <select name="categoryId" id="parentCategoryId" th:field="*{parentCategoryId}">
+                <th:each th:each="category : ${categories}">
+                    <option th:value="${category.id}" th:text="${category.name}"></option>
+                </th:each>
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+    </th:block>
+</th:block>
+<div id="scripts">
+    <th:block>
+        <script th:src="@{/js/shared/baseApi.js}"></script>
+        <script th:src="@{/js/user/userApi.js}"></script>
+        <script th:src="@{/js/product/productApi.js}"></script>
+        <script th:src="@{/js/category/categoryApi.js}"></script>
+        <script th:src="@{/js/order/orderApi.js}"></script>
+        <script th:src="@{/js/shoppingCart/shoppingCartApi.js}"></script>
+        <script th:src="@{/js/wishlist/wishlistApi.js}"></script>
+        <script th:src="@{/js/product/app.js}"></script>
+        <script th:src="@{/js/layout.js}"></script>
+        <script th:src="@{/js/create.js}"></script>
+    </th:block>
+</div>
+</body>
+</html>

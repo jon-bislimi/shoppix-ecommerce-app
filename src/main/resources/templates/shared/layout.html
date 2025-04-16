@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="layout(title, styles, content,  scripts)">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title th:text="${title}"></title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link th:href="@{/css/nav.css}" rel="stylesheet"/>
+    <link th:href="@{/css/aside.css}" rel="stylesheet" href="">
+
+
+    <th:block th:if="${styles != null && styles != ''}">
+        <th:block th:insert="${styles}"></th:block>
+    </th:block>
+
+    <style>
+
+
+        footer {
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+<aside class="aside-bar">
+    <ul class="nav flex-column d-flex"
+        style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+        <li th:if="${session.user == null || session.user.roleDisplayName == 'User'}" class="nav-item">
+            <a class="nav-link" id="wishlistLink" href="http://localhost:8080/wishlist">Wishlist</a>
+        </li>
+        <li class="nav-item" th:if="${session.user == null || session.user.roleDisplayName == 'User'}">
+            <a class="nav-link" id="shoppingCartLink" href="http://localhost:8080/shopping-cart">Shopping Cart</a>
+        </li>
+        <li class="nav-item" th:unless="${session.user == null}">
+            <a class="nav-link" id="ordersLink" href="http://localhost:8080/orders">Orders</a>
+        </li>
+        <ul class="d-flex" th:if="${session.user != null and session.user.roleDisplayName == 'Admin'}">
+            <li class="createBtn align-self-start dropdown">
+                <button class="btn btn-outline-dark dropdown-toggle btn-lg px-4 py-2" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    Create
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="http://localhost:8080/create/product">Product</a></li>
+                    <li><a class="dropdown-item" href="http://localhost:8080/create/category">Category</a></li>
+                    <li><a class="dropdown-item" href="http://localhost:8080/create/subcategory">Subcategory</a></li>
+                </ul>
+            </li>
+        </ul>
+        <li class="nav-item mt-auto d-flex justify-content-center" th:if="${session.user != null}">
+            <form method="post" th:action="@{/auth/logout}">
+                <button class="btn btn-outline-danger w-100" id="logoutBtn" type="submit">Logout</button>
+            </form>
+        </li>
+        <li class="nav-item mt-auto d-flex justify-content-center" th:unless="${session.user != null}">
+            <button id="ghostbtn" type="button" style="display: none">Logout</button>
+        </li>
+    </ul>
+</aside>
+
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand ms-3">Shopp<span>ix</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <form class="i d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success rounded-circle" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item me-3 custom-hover">
+                    <a class="nav-link active" aria-current="page" href="http://localhost:8080">Home</a>
+                </li>
+                <li class="nav-item me-3 custom-hover">
+                    <a class="nav-link active" aria-current="page" href="http://localhost:8080/about">About</a>
+                </li>
+                <li class="nav-item me-3 custom-hover">
+                    <a class="nav-link active" aria-current="page" href="http://localhost:8080/contact">Contact</a>
+                </li>
+
+
+                <li class="nav-item dropdown me-3">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Category
+                    </a>
+                    <ul class="dropdown-menu" id="ctgDropdown">
+                    </ul>
+                </li>
+            </ul>
+            <th:block th:if="${session.user == null}">
+                <a class="btn btn-outline-dark mt-auto" href="http://localhost:8080/auth/login">Login/Register</a>
+            </th:block>
+        </div>
+    </div>
+</nav>
+
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Shop in style</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Welcome to our online store</p>
+        </div>
+    </div>
+</header>
+
+<section class="section dashboard">
+    <div class="row">
+        <th:block th:replace="${content}"></th:block>
+    </div>
+</section>
+
+<!-- ======= Footer ======= -->
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Bisha! org</p></div>
+</footer>
+<!-- End Footer -->
+<span id="userId" th:if="${session.user}" th:text="${session.user.id}" style="display: none;"></span>
+<span id="userId" th:unless="${session.user}" style="display: none;">guest</span>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!--<script src="js/scripts.js"></script>-->
+
+<th:block th:if="${scripts != null && scripts != ''}">
+    <th:block th:insert="${scripts}"></th:block>
+</th:block>
+</body>
+</html>

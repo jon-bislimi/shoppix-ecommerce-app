@@ -1,0 +1,56 @@
+.aside-bar {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    width: 250px;
+    height: calc(100% - 56px);
+    background-color: #f1f1f1;  /* Ngjyrë gri e ndritshme */
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Hijë për theksimin e sidebar-it */
+    z-index: 1000;
+}
+
+/* Lidhjet dhe butonat në aside bar */
+.aside-bar .nav-item {
+    margin-bottom: 20px;
+}
+
+.aside-bar .nav-link {
+    font-size: 18px;
+    color: #495057;  /* Ngjyrë e errët për lidhjet */
+    font-weight: 500;
+}
+
+.aside-bar .nav-link:hover {
+    color: #28a745;  /* Ngjyrë gjelbër kur lidhja është hover */
+    text-decoration: none;
+}
+
+/* Butoni i logout-it */
+.aside-bar .nav-item button {
+    margin-top: auto;  /* Vendos butonin në fund */
+    background-color: #dc3545;  /* Ngjyrë e kuqe për butonin */
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;  /* Bërë butonin më të rrumbullakosur */
+}
+
+.aside-bar .nav-item button:hover {
+    background-color: #c82333;  /* Ngjyrë e errët kur hover mbi butonin */
+}
+
+.nav-link {
+    margin-left: 15px;
+}
+
+.createBtn {
+    list-style: none;
+}
+
+#logoutBtn {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
